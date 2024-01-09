@@ -2,7 +2,11 @@ const Redis = require("ioredis");
 require('dotenv').config()
 const redis = new Redis(process.env.REDIS_SERVER);
 const { msgModel } = require('../models/models')
-
+// redis.set('key', 'value');
+// redis.get('key', async (err, value) => {
+//   if(err) console.log(err)
+//   console.log(value)
+// })
 const socketEvents = async (io, socket) => {
 
   // console.log('a user connected', socket.id);

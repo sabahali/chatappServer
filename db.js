@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 function connection (cb) {
-    mongoose.connect('mongodb+srv://sabahali:678601@cluster0.bvvmync.mongodb.net/?retryWrites=true&w=majority',{
+    mongoose.connect(process.env.MONDODB_URL,{
         dbName:'chatapp',
             
     }).then(()=>{

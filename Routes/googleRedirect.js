@@ -17,7 +17,7 @@ router.get('/', async (req, res) => {
     try {
         const { tokens } = await oauth2Client.getToken(req.query.code);
         const decoded = jwtDecode(tokens.id_token)
-        console.log(decoded)
+        // console.log(decoded)
         const userData = {
             email: decoded.email,
             name: decoded.name,
@@ -26,7 +26,7 @@ router.get('/', async (req, res) => {
         try {
             const person = await userModel.findOne({ email: decoded.email });
             userId = person._id
-            console.log(person)
+            // console.log(person)
             if(!person){
                 const data = new userModel(userData);
                 try{
