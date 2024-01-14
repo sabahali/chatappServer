@@ -18,15 +18,25 @@ const cors = require('cors')
 const testRoute = require('./Routes/test');
 const {connection} = require('./db');
 app.use(cors({
-    origin:'http://localhost:3000'
+    origin:['http://localhost:3000','http://localhost:3000/reload']
 }))
 app.use(express.json())
 app.use('/reload',require('./Routes/reload'))
 app.use('/redirecturi',require('./Routes/googleRedirect'));
 app.use('/auth',require('./Routes/login'));
-app.use('/getcontacts',require('./Database/getUsers'))
+app.use('/refresh',require('./Routes/refresh'))
+app.use(require('./Routes/jwtVerify'))
+// app.use('/getcontacts',require('./Database/getUsers'))
 app.use('/getmsgs',require('./Database/getMsgs'))
-app.use('/test', testRoute);
+app.use('/getgrps',require('./Database/getGroups'))
+app.use('/getgroupmsgs',require('./Database/getGroupMsgs'))
+app.use('/sendfriendreq',require('./Routes/sendFrndReq'))
+app.use('/acceptReq',require('./Routes/acceptFrndReq'))
+app.use('/getusercontacts',require('./Database/getRequests'))
+ app.use('/getcontacts',require('./Database/getContacts'))
+app.use('/logout',require('./Routes/logout'));
+app.use('/adddp',require('./Database/addPicture'))
+// app.use('/test', testRoute);
 
 
 

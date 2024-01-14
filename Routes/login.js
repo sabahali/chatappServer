@@ -16,7 +16,7 @@ router.get('/',async(req,res)=>{
         res.setHeader(
             'Set-Cookie',
             `SIDCHAT=${refreshToken}; HttpOnly; Max-Age=${24 * 60 * 60 * 7 }; Path=/;SameSite=None; Secure`
-        ).json({accessToken,email:person.email,picture:person.picture,name:person.name}).status(200)
+        ).json({accessToken,email:person.email,picture:person.picture,name:person.name,requests:person.requests}).status(200)
        }else {
         res.json("NetworkError").status(500)
        }
