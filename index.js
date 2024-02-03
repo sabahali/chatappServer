@@ -1,5 +1,6 @@
 const express = require('express')
 const { Server } = require('socket.io');
+const cors = require('cors')
 const { createServer } = require('node:http');
 const cookieParser = require('cookie-parser')
 const socketEvents = require('./SocketRoutes/events')
@@ -14,11 +15,12 @@ const io = new Server(server,{
         origin:'http://localhost:3000'
     }
 });
-const cors = require('cors')
+
 const testRoute = require('./Routes/test');
 const {connection} = require('./db');
 app.use(cors({
-    origin:['http://localhost:3000','http://localhost:3000/reload']
+    origin:['http://localhost:3000'],
+    credentials:true
 }))
 app.use(express.json())
 app.use('/reload',require('./Routes/reload'))

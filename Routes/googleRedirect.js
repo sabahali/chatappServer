@@ -17,7 +17,7 @@ router.get('/', async (req, res) => {
     try {
         const { tokens } = await oauth2Client.getToken(req.query.code);
         const decoded = jwtDecode(tokens.id_token)
-        // console.log(decoded)
+        console.log(decoded)
         const userData = {
             email: decoded.email,
             name: decoded.name,
@@ -37,13 +37,13 @@ router.get('/', async (req, res) => {
                     console.log(err)
                 }
              }
-             res.redirect(`http://localhost:3000/login/${userId}`)
+             res.redirect(`${process.env.BASE_URL}/login/${userId}`)
         } catch (err) {
-            res.redirect(`http://localhost:3000/login/`)
+            res.redirect(`${process.env.BASE_URL}/login/`)
             console.log(err)
         }
     } catch (err) {
-        res.redirect(`http://localhost:3000/login/`)
+        res.redirect(`${process.env.BASE_URL}/login/`)
         console.log(err)
         
     }

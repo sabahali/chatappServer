@@ -5,7 +5,7 @@ const {userModel} = require('../models/models')
 
 require('dotenv').config()
 router.get('/',async(req,res)=>{
-    const refreshToken = req.cookies['SIDCHAT']
+    const refreshToken = req.cookies['SIDCHAT'];
     if(refreshToken){
         const decoded = jwt.verify(refreshToken,process.env.ACCESS_TOKEN_SECRET)
         if(decoded){

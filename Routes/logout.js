@@ -5,11 +5,15 @@ const jwt = require('jsonwebtoken')
 require('dotenv').config()
 
 
-router.get('/',async(req,res)=>{
-   res.setHeader(
-    'Set-Cookie',
-    `SIDCHAT=''; HttpOnly; Max-Age=${24 * 60 * 60 * 7 }; Path=/;SameSite=None; Secure`
-).json('Loggedout').status(200)
+router.get('/', async (req, res) => {
+    res.clearCookie('SIDCHAT', {
+      httpOnly: true,
+      maxAge: 0,
+      path: '/',
+      sameSite: 'None',
+      secure: true,
+    }).json('Logged out').status(200);
+  });
     
-})
+
 module.exports = router;
